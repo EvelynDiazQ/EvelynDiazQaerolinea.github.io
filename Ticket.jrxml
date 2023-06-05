@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ticket" language="groovy" pageWidth="595" pageHeight="300" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e3b8dee-884d-4541-b666-6841cce3da31">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="idusuario" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <parameter name="idvuelo" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[SELECT
+     concat(usuarios."nombre",' ',usuarios."apellido") AS cliente,
+     vuelos."numvuelo" AS vuelos_numvuelo,
+     vuelos."ciudadorigen" AS vuelos_ciudadorigen,
+     vuelos."ciudaddestino" AS vuelos_ciudaddestino,
+     vuelos."fechao" AS vuelos_fechao,
+     vuelos."fechav" AS vuelos_fechav,
+     vuelos."codigoavion" AS vuelos_codigoavion,
+     reserva."id_reserva" AS reserva_id_reserva,
+     reserva."clase" AS reserva_clase,
+     reserva."numpasajeros" AS reserva_numpasajeros,
+     reserva."fecha_reserva" AS reserva_fecha_reserva,
+     reserva."total" AS reserva_total,
+     reserva."idusuario" AS reserva_idusuario,
+     reserva."idvuelos" AS reserva_idvuelos
+FROM
+     "public"."usuarios" usuarios INNER JOIN "public"."reserva" reserva ON usuarios."id_usuario" = reserva."idusuario"
+     INNER JOIN "public"."vuelos" vuelos ON reserva."idvuelos" = vuelos."id_vuelos" where reserva."idusuario" =  $P{idusuario} and reserva."idvuelos" =  $P{idvuelo}]]>
+    </queryString>
+    <field name="cliente" class="java.lang.String"/>
+    <field name="vuelos_numvuelo" class="java.lang.String"/>
+    <field name="vuelos_ciudadorigen" class="java.lang.String"/>
+    <field name="vuelos_ciudaddestino" class="java.lang.String"/>
+    <field name="vuelos_fechao" class="java.sql.Date"/>
+    <field name="vuelos_fechav" class="java.sql.Date"/>
+    <field name="vuelos_codigoavion" class="java.lang.String"/>
+    <field name="reserva_id_reserva" class="java.lang.Integer"/>
+    <field name="reserva_clase" class="java.lang.String"/>
+    <field name="reserva_numpasajeros" class="java.lang.Integer"/>
+    <field name="reserva_fecha_reserva" class="java.sql.Date"/>
+    <field name="reserva_total" class="java.lang.Double"/>
+    <field name="reserva_idusuario" class="java.lang.Integer"/>
+    <field name="reserva_idvuelos" class="java.lang.Integer"/>
+    <title>
+        <band height="72">
+            <frame>
+                <reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="8a7c6aa0-785f-4e44-a9e4-51d6e0d31207"/>
+                <staticText>
+                    <reportElement x="20" y="29" width="345" height="43" forecolor="#FFFFFF" uuid="b2b83f5e-8bb9-41d2-a7cf-af2cc0ef7fcd"/>
+                    <textElement>
+                        <font size="34" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Aerolínea Airbender]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="441" y="29" width="134" height="63" forecolor="#000000" uuid="48fd5f55-8881-42e0-a3b0-83aa47075efc"/>
+                    <textElement textAlignment="Right">
+                        <font size="45" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Ticket]]></text>
+                </staticText>
+            </frame>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="161">
+            <staticText>
+                <reportElement x="14" y="11" width="100" height="20" uuid="db48415c-584b-47c6-80e7-9065d9c6d013"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Nombres:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="14" y="31" width="100" height="20" uuid="b0e6c86b-9a52-4178-871d-b081a732a269"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Numero de vuelo:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="14" y="84" width="100" height="20" uuid="877cca4b-235d-4e86-aac2-5a4400d0c0dc"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Destino:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="14" y="64" width="100" height="20" uuid="f2c71a08-7602-471d-98ef-cf1ad8cc87d9"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Origen:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="14" y="134" width="100" height="20" uuid="264d7242-4892-43c4-9c65-265b6629ee18"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Fecha de vuelta:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="14" y="114" width="100" height="20" uuid="077c1466-14d0-44b8-b5af-b0eda3ea0ee1"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Fecha de salida:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="131" y="11" width="100" height="20" uuid="7de06daa-69ed-4fda-875d-d81449a9cc4e"/>
+                <textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="131" y="31" width="100" height="20" uuid="97fec579-30a6-4cd7-8b79-48d42c221283"/>
+                <textFieldExpression><![CDATA[$F{vuelos_numvuelo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="131" y="64" width="100" height="20" uuid="f7446b9c-97aa-490e-b910-18d965b7cd5d"/>
+                <textFieldExpression><![CDATA[$F{vuelos_ciudadorigen}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="131" y="84" width="100" height="20" uuid="136eb315-2c10-458b-aa4a-e1568acc923b"/>
+                <textFieldExpression><![CDATA[$F{vuelos_ciudaddestino}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="131" y="114" width="100" height="20" uuid="883caa5f-13b7-4376-b02e-139cf2ee5529"/>
+                <textFieldExpression><![CDATA[$F{vuelos_fechao}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="131" y="134" width="100" height="20" uuid="cc5434f3-acf2-46ed-b8dc-ef19abdf2118"/>
+                <textFieldExpression><![CDATA[$F{vuelos_fechav}]]></textFieldExpression>
+            </textField>
+        </band>
+    </columnHeader>
+</jasperReport>
